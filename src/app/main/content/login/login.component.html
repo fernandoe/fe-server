@@ -58,9 +58,9 @@
                     </a>
                 </div>
 
-                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN"
+                <button mat-raised-button color="accent" class="submit-button" aria-label="LOGIN" (click)="doLogin()"
                         [disabled]="loginForm.invalid">
-                    LOGIN
+                    Entrar
                 </button>
 
             </form>
