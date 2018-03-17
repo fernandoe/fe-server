@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {fuseAnimations} from '@fuse/animations';
@@ -62,8 +62,9 @@ export class FuseLoginComponent implements OnInit {
     }
   }
 
-  doLogin() {
-    console.log('==> doLogin');
-    this.contaService.login('fer.esp@gmail.cmo', 'password');
+  onLogin(form: NgForm) {
+    const email = form.value.email;
+    const password = form.value.password;
+    this.contaService.login(email, password);
   }
 }

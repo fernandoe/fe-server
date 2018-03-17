@@ -8,7 +8,10 @@ export class ContaService {
   }
 
   login(email: string, password: string) {
-    this.httpClient.post('http://www.google.com.br', {}).subscribe(res => {
+    this.httpClient.post('http://127.0.0.1:9000/auth/', {
+      username: email,
+      password: password
+    }).subscribe(res => {
       console.log(res);
     }, err => {
       console.log(err);
