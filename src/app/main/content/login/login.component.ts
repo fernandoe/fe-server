@@ -4,6 +4,7 @@ import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {FuseConfigService} from '@fuse/services/config.service';
 import {fuseAnimations} from '@fuse/animations';
 import {ContaService} from '../../../services/conta/conta.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'fuse-login',
@@ -17,7 +18,8 @@ export class FuseLoginComponent implements OnInit {
 
   constructor(private fuseConfig: FuseConfigService,
               private formBuilder: FormBuilder,
-              private contaService: ContaService) {
+              private contaService: ContaService,
+              private router: Router) {
 
     this.fuseConfig.setConfig({
       layout: {
@@ -65,6 +67,22 @@ export class FuseLoginComponent implements OnInit {
   onLogin(form: NgForm) {
     const email = form.value.email;
     const password = form.value.password;
-    this.contaService.login(email, password);
+    this.contaService.login(email, password)
+      .subscribe(success => {
+        if (success) {
+            this.router.navigate(['sample']);
+        } else {
+          console.log('TODO: O login não teve sucesso, verificar!');
+        }
+      });
+
+
+    // subscribe(
+    //     (result: boolean) => {
+    //       if (result) {
+
+    //       }
+    //     }
+    // );
   }
 }

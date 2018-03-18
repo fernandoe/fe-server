@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import 'rxjs/add/operator/map';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ContaService {
@@ -7,18 +9,28 @@ export class ContaService {
   constructor(private httpClient: HttpClient) {
   }
 
-  login(email: string, password: string) {
-    this.httpClient.post('http://127.0.0.1:9000/auth/', {
+  login(email: string, password: string): Observable<boolean> {
+    return this.httpClient.post('http://127.0.0.1:9000/auth/', {
       'email': email,
       'password': password
-    }).subscribe(response => {
-      console.log('Response:' + response);
+    }).map((response: Response) => {
       const token = response['token'];
       this.saveToken(token);
       return true;
-    }, err => {
-      console.log(err);
     });
+
+
+    // return this.httpClient.post('http://127.0.0.1:9000/auth/', {
+    //   'email': email,
+    //   'password': password
+    // }).subscribe(response => {
+    //   console.log('Response:' + response);
+    //   const token = response['token'];
+    //   this.saveToken(token);
+    //   return true;
+    // }, err => {
+    //   console.log(err);
+    // });
   }
 
   logout() {
@@ -30,11 +42,7 @@ export class ContaService {
   }
 
   getToken() {
-    const token = localStorage.getItem('token');
-    if (token != null) {
-      return token;
-    }
-    return null;
+    return localStorage.getItem('token');
   }
 
   isAuthenticated() {
