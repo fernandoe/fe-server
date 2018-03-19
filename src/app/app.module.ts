@@ -19,8 +19,7 @@ import {TokenInterceptor} from './services/conta/token.interceptor';
 import {FuseContactsModule} from "./main/content/contacts/contacts.module";
 import {InMemoryWebApiModule} from "angular-in-memory-web-api";
 import {FuseFakeDbService} from "./fuse-fake-db/fuse-fake-db.service";
-import {ClientesComponent} from './main/content/clientes/clientes.component';
-import {ClienteListComponent} from './main/content/clientes/cliente-list/cliente-list.component';
+import {ClientesModule} from "./main/content/clientes/clientes.module";
 
 
 const appRoutes: Routes = [
@@ -33,8 +32,6 @@ const appRoutes: Routes = [
 @NgModule({
     declarations: [
         AppComponent,
-        ClientesComponent,
-        ClienteListComponent
     ],
     imports: [
         BrowserModule,
@@ -53,9 +50,11 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseMainModule,
         FuseSampleModule,
-        FuseContactsModule,
 
-        LoginModule
+        // FuseContactsModule,
+
+        LoginModule,
+        ClientesModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
