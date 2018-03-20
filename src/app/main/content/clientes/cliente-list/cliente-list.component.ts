@@ -3,7 +3,7 @@ import {FilesDataSource} from '../../contacts/contact-list/contact-list.componen
 import {fuseAnimations} from '../../../../../@fuse/animations';
 
 @Component({
-    selector: 'app-cliente-list',
+    selector: 'fe-clientes-list',
     templateUrl: './cliente-list.component.html',
     styleUrls: ['./cliente-list.component.scss'],
     encapsulation: ViewEncapsulation.None,

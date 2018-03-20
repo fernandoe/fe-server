@@ -1,8 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {Subscription} from "rxjs/Subscription";
-import {ContactsService} from "../contacts/contacts.service";
 import {fuseAnimations} from "../../../../@fuse/animations";
+import {ClientesService} from "../../../services/cliente/clientes.service";
 
 @Component({
     selector: 'app-clientes',
@@ -18,11 +18,10 @@ export class ClientesComponent implements OnInit {
     dialogRef: any;
     onSelectedContactsChangedSubscription: Subscription;
 
-    constructor(private contactsService: ContactsService) {
+    constructor(private clientesService: ClientesService) {
         this.searchInput = new FormControl('');
     }
 
     ngOnInit() {
     }
-
 }

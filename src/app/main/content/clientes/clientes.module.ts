@@ -24,26 +24,25 @@ import {FuseContactsContactFormDialogComponent} from "../contacts/contact-form/c
 import {FuseContactsContactListComponent} from "../contacts/contact-list/contact-list.component";
 import {FuseConfirmDialogModule} from "../../../../@fuse/components";
 import {FuseSharedModule} from "../../../../@fuse/shared.module";
-import {ContactsService} from "../contacts/contacts.service";
+import {ClientesService} from "../../../services/cliente/clientes.service";
+
 
 const routes = [{
     path: 'clientes',
     component: ClientesComponent,
     resolve: {
-        contacts: ContactsService
+        contacts: ClientesService
     }
 }];
 
 @NgModule({
     declarations: [
-        FuseContactsComponent,
-        FuseContactsContactListComponent,
         FuseContactsSelectedBarComponent,
         FuseContactsMainSidenavComponent,
         FuseContactsContactFormDialogComponent,
 
+        ClientesComponent,
         ClienteListComponent,
-        ClientesComponent
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -67,7 +66,7 @@ const routes = [{
         CommonModule
     ],
     providers: [
-        ContactsService
+        ClientesService
     ]
 })
 export class ClientesModule {
