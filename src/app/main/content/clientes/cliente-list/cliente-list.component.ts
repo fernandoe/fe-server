@@ -1,10 +1,12 @@
 import {Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
-import {FilesDataSource} from '../../contacts/contact-list/contact-list.component';
 import {fuseAnimations} from '../../../../../@fuse/animations';
-import {ClientesService} from "../../../../services/cliente/clientes.service";
-import {Subscription} from "rxjs/Subscription";
-import {FuseConfirmDialogComponent} from "../../../../../@fuse/components/confirm-dialog/confirm-dialog.component";
-import {MatDialogRef} from "@angular/material";
+import {ClientesService} from '../../../../services/cliente/clientes.service';
+import {Subscription} from 'rxjs/Subscription';
+import {FuseConfirmDialogComponent} from '../../../../../@fuse/components/confirm-dialog/confirm-dialog.component';
+import {MatDialogRef} from '@angular/material';
+import {DataSource} from '@angular/cdk/collections';
+import {Observable} from 'rxjs/Observable';
+import {Cliente} from '../../../../services/models/cliente.model';
 
 @Component({
     selector: 'fe-clientes-list',
@@ -16,23 +18,20 @@ import {MatDialogRef} from "@angular/material";
 export class ClienteListComponent implements OnInit, OnDestroy {
 
     @ViewChild('dialogContent') dialogContent: TemplateRef<any>;
-
     contacts: any;
     user: any;
-    dataSource: FilesDataSource | null;
-    displayedColumns = ['checkbox', 'avatar', 'name', 'email', 'phone', 'jobTitle', 'buttons'];
     selectedContacts: any[];
     checkboxes: {};
-
     onContactsChangedSubscription: Subscription;
     onSelectedContactsChangedSubscription: Subscription;
     onUserDataChangedSubscription: Subscription;
-
     dialogRef: any;
-
     confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
-    constructor(private clientesService: ClientesService,) {
+    dataSource = new ClienteDataSource(this.clientesService);
+    displayedColumns = ['nome', 'buttons'];
+
+    constructor(private clientesService: ClientesService) {
     }
 
     ngOnInit(): void {
@@ -40,4 +39,23 @@ export class ClienteListComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
     }
+
+    editCliente(): void {
+
+    }
+}
+
+export class ClienteDataSource extends DataSource<any> {
+
+    constructor(private clientesService: ClientesService) {
+        super();
+    }
+
+    connect(): Observable<Cliente[]> {
+        return this.clientesService.search();
+    }
+
+    disconnect(): void {
+    }
+
 }
