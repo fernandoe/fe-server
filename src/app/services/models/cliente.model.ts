@@ -1,6 +1,8 @@
 export interface Cliente {
-    id: string;
-    name: string;
+    uuid: string;
+    created_at: string;
+    updated_at: string;
+    nome: string;
     email: string;
-    phone: string;
+    telefone_celular: string;
 }

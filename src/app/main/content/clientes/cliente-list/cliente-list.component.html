@@ -1,10 +1,10 @@
 <mat-table #table [dataSource]="dataSource" [@animateStagger]="{value:'50'}">
 
     <!-- Coluna Nome -->
-    <ng-container cdkColumnDef="name">
+    <ng-container cdkColumnDef="nome">
         <mat-header-cell *cdkHeaderCellDef>Nome</mat-header-cell>
         <mat-cell *cdkCellDef="let cliente">
-            <p class="text-truncate font-weight-600">{{cliente.name}}</p>
+            <p class="text-truncate font-weight-600">{{cliente.nome}}</p>
         </mat-cell>
     </ng-container>
 
@@ -17,10 +17,10 @@
     </ng-container>
 
     <!-- Coluna Telefone -->
-    <ng-container cdkColumnDef="phone">
+    <ng-container cdkColumnDef="telefone_celular">
         <mat-header-cell *cdkHeaderCellDef fxHide fxShow.gt-md>Telefone</mat-header-cell>
         <mat-cell *cdkCellDef="let cliente" fxHide fxShow.gt-md>
-            <p class="phone text-truncate">{{cliente.phone}}</p>
+            <p class="phone text-truncate">{{cliente.telefone_celular}}</p>
         </mat-cell>
     </ng-container>
 
