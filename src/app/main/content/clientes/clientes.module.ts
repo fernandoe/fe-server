@@ -30,9 +30,9 @@ import {ClientesService} from "../../../services/cliente/clientes.service";
 const routes = [{
     path: 'clientes',
     component: ClientesComponent,
-    resolve: {
-        contacts: ClientesService
-    }
+    // resolve: {
+    //     contacts: ClientesService
+    // }
 }];
 
 @NgModule({

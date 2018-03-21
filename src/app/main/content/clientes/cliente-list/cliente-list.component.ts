@@ -29,7 +29,7 @@ export class ClienteListComponent implements OnInit, OnDestroy {
     confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
     dataSource = new ClienteDataSource(this.clientesService);
-    displayedColumns = ['nome', 'buttons'];
+    displayedColumns = ['name', 'email', 'phone', 'buttons'];
 
     constructor(private clientesService: ClientesService) {
     }
