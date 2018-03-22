@@ -6,46 +6,33 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ContaService {
 
-  constructor(private httpClient: HttpClient) {
-  }
+    constructor(private httpClient: HttpClient) {
+    }
 
-  login(email: string, password: string): Observable<boolean> {
-    return this.httpClient.post('http://127.0.0.1:9000/auth/', {
-      'email': email,
-      'password': password
-    }).map((response: Response) => {
-      const token = response['token'];
-      this.saveToken(token);
-      return true;
-    });
+    login(email: string, password: string): Observable<boolean> {
+        return this.httpClient.post('http://127.0.0.1:9000/auth/', {
+            'email': email,
+            'password': password
+        }).map((response: Response) => {
+            const token = response['token'];
+            this.saveToken(token);
+            return true;
+        });
+    }
 
+    logout() {
+        localStorage.removeItem('token');
+    }
 
-    // return this.httpClient.post('http://127.0.0.1:9000/auth/', {
-    //   'email': email,
-    //   'password': password
-    // }).subscribe(response => {
-    //   console.log('Response:' + response);
-    //   const token = response['token'];
-    //   this.saveToken(token);
-    //   return true;
-    // }, err => {
-    //   console.log(err);
-    // });
-  }
+    saveToken(token: string) {
+        localStorage.setItem('token', token);
+    }
 
-  logout() {
-    localStorage.removeItem('token');
-  }
+    getToken() {
+        return localStorage.getItem('token');
+    }
 
-  saveToken(token: string) {
-    localStorage.setItem('token', token);
-  }
-
-  getToken() {
-    return localStorage.getItem('token');
-  }
-
-  isAuthenticated() {
-    return this.getToken() != null;
-  }
+    isAuthenticated() {
+        return this.getToken() != null;
+    }
 }
