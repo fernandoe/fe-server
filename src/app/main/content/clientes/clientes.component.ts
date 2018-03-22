@@ -1,8 +1,10 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {Subscription} from "rxjs/Subscription";
-import {fuseAnimations} from "../../../../@fuse/animations";
-import {ClientesService} from "../../../services/cliente/clientes.service";
+import {fuseAnimations} from '../../../../@fuse/animations';
+import {ClientesService} from '../../../services/cliente/clientes.service';
+import {ClienteDataSource} from './cliente-list/cliente-list.component';
+import {Observable} from 'rxjs/Observable';
+import {Cliente} from '../../../services/models/cliente.model';
+import {DataSource} from '@angular/cdk/collections';
 
 @Component({
     selector: 'app-clientes',
@@ -13,15 +15,27 @@ import {ClientesService} from "../../../services/cliente/clientes.service";
 })
 export class ClientesComponent implements OnInit {
 
-    hasSelectedContacts: boolean;
-    searchInput: FormControl;
-    dialogRef: any;
-    onSelectedContactsChangedSubscription: Subscription;
+    dataSource: ClienteDataSource;
+    displayedColumns = ['nome', 'email', 'telefone_celular', 'buttons'];
 
     constructor(private clientesService: ClientesService) {
-        this.searchInput = new FormControl('');
     }
 
-    ngOnInit() {
+    ngOnInit(): void {
+        this.dataSource = new ClienteDataSource(this.clientesService);
+    }
+}
+
+export class ClienteDataSource extends DataSource<any> {
+
+    constructor(private clientesService: ClientesService) {
+        super();
+    }
+
+    connect(): Observable<Cliente[]> {
+        return this.clientesService.search();
+    }
+
+    disconnect(): void {
     }
 }

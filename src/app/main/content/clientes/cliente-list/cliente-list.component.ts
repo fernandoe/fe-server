@@ -1,9 +1,6 @@
 import {Component, OnDestroy, OnInit, TemplateRef, ViewChild, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '../../../../../@fuse/animations';
 import {ClientesService} from '../../../../services/cliente/clientes.service';
-import {Subscription} from 'rxjs/Subscription';
-import {FuseConfirmDialogComponent} from '../../../../../@fuse/components/confirm-dialog/confirm-dialog.component';
-import {MatDialogRef} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {Observable} from 'rxjs/Observable';
 import {Cliente} from '../../../../services/models/cliente.model';
@@ -17,24 +14,14 @@ import {Cliente} from '../../../../services/models/cliente.model';
 })
 export class ClienteListComponent implements OnInit, OnDestroy {
 
-    @ViewChild('dialogContent') dialogContent: TemplateRef<any>;
-    contacts: any;
-    user: any;
-    selectedContacts: any[];
-    checkboxes: {};
-    onContactsChangedSubscription: Subscription;
-    onSelectedContactsChangedSubscription: Subscription;
-    onUserDataChangedSubscription: Subscription;
-    dialogRef: any;
-    confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
-
-    dataSource = new ClienteDataSource(this.clientesService);
+    dataSource: ClienteDataSource;
     displayedColumns = ['nome', 'email', 'telefone_celular', 'buttons'];
 
     constructor(private clientesService: ClientesService) {
     }
 
     ngOnInit(): void {
+        this.dataSource = new ClienteDataSource(this.clientesService);
     }
 
     ngOnDestroy(): void {
