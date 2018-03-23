@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {fuseAnimations} from '../../../../@fuse/animations';
 import {ClientesService} from '../../../services/cliente/clientes.service';
-import {ClienteDataSource} from './cliente-list/cliente-list.component';
 import {Observable} from 'rxjs/Observable';
 import {Cliente} from '../../../services/models/cliente.model';
 import {DataSource} from '@angular/cdk/collections';
@@ -16,7 +15,7 @@ import {DataSource} from '@angular/cdk/collections';
 export class ClientesComponent implements OnInit {
 
     dataSource: ClienteDataSource;
-    displayedColumns = ['nome', 'email', 'telefone_celular', 'buttons'];
+    displayedColumns = ['nome', 'email', 'telefone_celular'];
 
     constructor(private clientesService: ClientesService) {
     }
