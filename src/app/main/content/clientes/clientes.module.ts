@@ -24,6 +24,7 @@ import {FuseConfirmDialogModule} from '../../../../@fuse/components';
 import {FuseSharedModule} from '../../../../@fuse/shared.module';
 import {ClientesService} from '../../../services/cliente/clientes.service';
 import {ClientesComponent} from './list/clientes.component';
+import {ClientePersistComponent} from './persist/cliente.persist.component';
 
 
 const routes = [{
@@ -38,6 +39,7 @@ const routes = [{
         FuseContactsContactFormDialogComponent,
 
         ClientesComponent,
+        ClientePersistComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
