@@ -17,13 +17,13 @@ import {
     MatToolbarModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
-import {ClientesComponent} from './clientes.component';
 import {FuseContactsSelectedBarComponent} from '../contacts/selected-bar/selected-bar.component';
 import {FuseContactsMainSidenavComponent} from '../contacts/sidenavs/main/main.component';
 import {FuseContactsContactFormDialogComponent} from '../contacts/contact-form/contact-form.component';
 import {FuseConfirmDialogModule} from '../../../../@fuse/components';
 import {FuseSharedModule} from '../../../../@fuse/shared.module';
 import {ClientesService} from '../../../services/cliente/clientes.service';
+import {ClientesComponent} from './list/clientes.component';
 
 
 const routes = [{

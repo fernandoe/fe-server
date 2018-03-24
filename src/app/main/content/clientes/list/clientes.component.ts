@@ -1,6 +1,4 @@
 import {AfterViewInit, Component, ViewChild, ViewEncapsulation} from '@angular/core';
-import {fuseAnimations} from '../../../../@fuse/animations';
-import {ClientesService} from '../../../services/cliente/clientes.service';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/merge';
@@ -9,6 +7,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import {Observable} from 'rxjs/Observable';
+import {ClientesService} from '../../../../services/cliente/clientes.service';
+import {fuseAnimations} from '../../../../../@fuse/animations';
 
 @Component({
     selector: 'fe-clientes',
