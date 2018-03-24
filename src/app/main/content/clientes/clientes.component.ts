@@ -20,7 +20,7 @@ import {Observable} from 'rxjs/Observable';
 export class ClientesComponent implements AfterViewInit {
 
     // dataSource: ClienteDataSource;
-    displayedColumns = ['nome'];
+    displayedColumns = ['nome', 'email', 'telefone_celular'];
     // ['nome', 'email', 'telefone_celular'];
 
     resultsLength = 0;
