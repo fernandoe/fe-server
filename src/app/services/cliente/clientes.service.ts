@@ -1,21 +1,17 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Cliente} from '../models/cliente.model';
+import {ClientesApi} from './clientes.api';
 
 @Injectable()
 export class ClientesService {
 
-    // private serviceUrl = 'https://jsonplaceholder.typicode.com/users';
-    private serviceUrl = 'http://localhost:9001/api/v1/clientes/';
+    private serviceUrl = 'http://localhost:9001/api/v1/clientes/?page=';
 
     constructor(private http: HttpClient) {
     }
 
-    search(): Observable<Cliente[]> {
-        return this.http
-            .get(this.serviceUrl)
-            .map(result => result['results']);
+    search(page: number): Observable<ClientesApi> {
+        return this.http.get<ClientesApi>(this.serviceUrl + (page + 1));
     }
-
 }
