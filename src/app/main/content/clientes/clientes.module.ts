@@ -26,10 +26,12 @@ import {ClientesService} from '../../../services/cliente/clientes.service';
 import {ClientesComponent} from './list/clientes.component';
 import {ClientePersistComponent} from './persist/cliente.persist.component';
 
-
 const routes = [{
     path: 'clientes',
     component: ClientesComponent
+}, {
+    path: 'clientes/:uuid',
+    component: ClientePersistComponent
 }];
 
 @NgModule({
