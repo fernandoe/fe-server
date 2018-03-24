@@ -11,7 +11,7 @@ import 'rxjs/add/operator/switchMap';
 import {Observable} from 'rxjs/Observable';
 
 @Component({
-    selector: 'app-clientes',
+    selector: 'fe-clientes',
     templateUrl: './clientes.component.html',
     styleUrls: ['./clientes.component.scss'],
     encapsulation: ViewEncapsulation.None,
