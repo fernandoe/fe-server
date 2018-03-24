@@ -19,10 +19,7 @@ import {Observable} from 'rxjs/Observable';
 })
 export class ClientesComponent implements AfterViewInit {
 
-    // dataSource: ClienteDataSource;
     displayedColumns = ['nome', 'email', 'telefone_celular'];
-    // ['nome', 'email', 'telefone_celular'];
-
     resultsLength = 0;
     isLoadingResults = false;
     isRateLimitReached = false;
@@ -44,56 +41,5 @@ export class ClientesComponent implements AfterViewInit {
                 return data.results;
             })
             .subscribe(data => this.dataSource.data = data);
-
-        // this.clientesService.search(page)
-        //     .map(data => {
-        //         // console.log(data.results);
-        //         this.resultsLength = data.count;
-        //         return data.results;
-        //     }).subscribe(data => this.dataSource.data = data);
-
     }
-
-    // Observable.merge(this.sort.sortChange, this.paginator.page)
-    //                  .startWith(null)
-    //                  .switchMap(() => {
-    //                      setTimeout(() => {
-    //                          this.isLoadingResults = true;
-    //                      });
-    //                      return this.exampleDatabase!.getRepoIssues(
-    //                          this.sort.active, this.sort.direction, this.paginator.pageIndex);
-    //                  })
-    //                  .map(data => {
-    //                      // Flip flag to show that loading has finished.
-    //                      this.isLoadingResults = false;
-    //                      this.isRateLimitReached = false;
-    //                      this.resultsLength = data.total_count;
-    //
-    //                      return data.items;
-    //                  })
-    //                  .catch(() => {
-    //                      setTimeout(() => {
-    //                          this.isLoadingResults = false;
-    //                          // Catch if the GitHub API has reached its rate limit. Return empty data.
-    //                          this.isRateLimitReached = true;
-    //                      });
-    //                      return Observable.of([]);
-    //                  })
-    //                  .subscribe(data => this.dataSource.data = data);
-
-
 }
-
-// export class ClienteDataSource extends DataSource<any> {
-//
-//     constructor(private clientesService: ClientesService) {
-//         super();
-//     }
-//
-//     connect(): Observable<Cliente[]> {
-//         return this.clientesService.search();
-//     }
-//
-//     disconnect(): void {
-//     }
-// }

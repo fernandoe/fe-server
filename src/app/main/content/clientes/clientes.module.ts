@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ClienteListComponent} from './cliente-list/cliente-list.component';
 import {RouterModule} from '@angular/router';
 import {
     MatButtonModule,
@@ -29,10 +28,7 @@ import {ClientesService} from '../../../services/cliente/clientes.service';
 
 const routes = [{
     path: 'clientes',
-    component: ClientesComponent,
-    // resolve: {
-    //     contacts: ClientesService
-    // }
+    component: ClientesComponent
 }];
 
 @NgModule({
@@ -42,7 +38,6 @@ const routes = [{
         FuseContactsContactFormDialogComponent,
 
         ClientesComponent,
-        ClienteListComponent,
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -72,8 +67,4 @@ const routes = [{
     ]
 })
 export class ClientesModule {
-
-    newContact() {
-    }
-
 }
