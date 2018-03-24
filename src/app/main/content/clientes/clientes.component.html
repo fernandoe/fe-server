@@ -1,60 +1,97 @@
-<div id="contacts" class="page-layout simple left-sidenav inner-sidenav">
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
 
-    <!-- HEADER -->
-    <div class="header mat-accent-bg p-16 p-sm-24" fxLayout="column" fxLayoutAlign="start start"
-         fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
 
-        <!-- APP TITLE -->
-        <div fxLayout="row" fxLayoutAlign="start center">
-            <button mat-button class="mat-icon-button sidenav-toggle mr-12"
-                    fuseMatSidenavToggler="contacts-main-sidenav"
-                    fxHide.gt-md>
-                <mat-icon>menu</mat-icon>
-            </button>
-            <div class="logo" fxLayout="row" fxLayoutAlign="start center">
-                <mat-icon class="logo-icon mr-16" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box</mat-icon>
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header white-fg"
+             fxLayout="column" fxLayoutAlign="center center"
+             fxLayout.gt-xs="row" fxLayoutAlign.gt-xs="space-between center">
+
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom
+                          [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box
+                </mat-icon>
                 <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Clientes</span>
             </div>
-        </div>
-        <!-- / APP TITLE -->
 
-        <!-- SEARCH -->
-        <div class="search-input-wrapper mt-16 ml-8 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
-            <label for="search" class="mr-8">
-                <mat-icon>search</mat-icon>
-            </label>
-            <mat-form-field mat-no-float class="m-0" floatPlaceholder="never">
-                <input matInput [formControl]="searchInput" id="search" placeholder="Pesquisar">
-            </mat-form-field>
-        </div>
-        <!-- / SEARCH -->
-
-    </div>
-    <!-- / HEADER -->
-
-    <!-- SELECTED BAR -->
-    <fuse-selected-bar class="mat-accent-600-bg" *ngIf="hasSelectedContacts" [@slideInTop]></fuse-selected-bar>
-    <!-- / SELECTED BAR -->
-
-    <mat-sidenav-container>
-        <!-- CENTER -->
-        <div class="center p-24 pb-56 pr-sm-92" fusePerfectScrollbar>
-
-            <!-- CONTENT -->
-            <div class="content mat-white-bg mat-elevation-z4">
-                <fe-clientes-list></fe-clientes-list>
+            <!-- PESQUISA -->
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                 fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+                    <input id="search" matInput #filter placeholder="Pesquisar">
+                </mat-form-field>
             </div>
-            <!-- / CONTENT -->
+            <!-- / PESQUISA -->
+
+            <button mat-raised-button
+                    [routerLink]="'/clientes/novo'"
+                    class="add-product-button mat-white-bg my-12 mt-sm-0">
+                <span>Novo Cliente</span>
+            </button>
 
         </div>
-        <!-- / CENTER -->
-    </mat-sidenav-container>
+        <!-- / HEADER -->
 
+        <!-- CONTENT CARD -->
+        <div class="content-card mat-white-bg">
+
+        <div class="example-loading-shade"
+             *ngIf="isLoadingResults || isRateLimitReached">
+            <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+            <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+                GitHub's API rate limit has been reached. It will be reset in one minute.
+            </div>
+        </div>
+
+        <mat-table #table [dataSource]="dataSource" class="example-table"
+                   matSort matSortActive="created" matSortDisableClear matSortDirection="asc">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+
+            <!-- Number Column -->
+            <ng-container matColumnDef="nome">
+                <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.nome }}</mat-cell>
+            </ng-container>
+
+            <!-- Title Column -->
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.email }}</mat-cell>
+            </ng-container>
+
+            <!-- State Column -->
+            <ng-container matColumnDef="telefone_celular">
+                <mat-header-cell *matHeaderCellDef>Telefone</mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.telefone_celular }}</mat-cell>
+            </ng-container>
+
+            <!-- Created Column -->
+            <ng-container matColumnDef="created">
+                <mat-header-cell *matHeaderCellDef
+                                 mat-sort-header
+                                 disableClear="true">
+                    Created
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row">{{ row.created_at | date }}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+
+        <mat-paginator [length]="resultsLength" [pageSize]="3"></mat-paginator>
+
+        </div>
+        <!-- / CONTENT CARD -->
+    </div>
+    <!-- / CENTER -->
 </div>
-
-<!-- ADD CONTACT BUTTON -->
-<button mat-fab class="mat-accent-bg" id="add-contact-button" (click)="newContact()" aria-label="add contact"
-        *fuseIfOnDom [@animate]="{value:'*', params:{delay:'300ms',scale:'.2'}}">
-    <mat-icon>person_add</mat-icon>
-</button>
-<!-- / ADD CONTACT BUTTON -->
