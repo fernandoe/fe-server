@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/merge';
 import 'rxjs/add/observable/of';
@@ -6,6 +6,8 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import {fuseAnimations} from '../../../../../@fuse/animations';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {Cliente} from '../../../../services/cliente/cliente.model';
 
 @Component({
     templateUrl: './cliente.persist.component.html',
@@ -13,12 +15,23 @@ import {fuseAnimations} from '../../../../../@fuse/animations';
     encapsulation: ViewEncapsulation.None,
     animations: fuseAnimations
 })
-export class ClientePersistComponent implements AfterViewInit {
+export class ClientePersistComponent implements OnInit, OnDestroy {
 
+    cliente: Cliente;
+    clienteForm: FormGroup;
 
-    constructor() {
+    constructor(private formBuilder: FormBuilder) {
     }
 
-    ngAfterViewInit(): void {
+    ngOnInit() {
+        this.clienteForm = this.formBuilder.group({
+            uuid: '',
+            nome: '',
+            email: ''
+        });
+    }
+
+    ngOnDestroy() {
+
     }
 }

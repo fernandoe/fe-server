@@ -13,7 +13,7 @@ import {
     MatProgressSpinnerModule,
     MatRippleModule,
     MatSidenavModule,
-    MatTableModule,
+    MatTableModule, MatTabsModule,
     MatToolbarModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -60,6 +60,7 @@ const routes = [{
         MatTableModule,
         MatToolbarModule,
         MatProgressSpinnerModule,
+        MatTabsModule,
 
         FuseSharedModule,
         FuseConfirmDialogModule,
