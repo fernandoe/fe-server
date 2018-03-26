@@ -8,6 +8,8 @@ import 'rxjs/add/operator/switchMap';
 import {fuseAnimations} from '../../../../../@fuse/animations';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Cliente} from '../../../../services/cliente/cliente.model';
+import {ClientesService} from '../../../../services/cliente/clientes.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     templateUrl: './cliente.persist.component.html',
@@ -20,18 +22,46 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     cliente: Cliente;
     clienteForm: FormGroup;
 
-    constructor(private formBuilder: FormBuilder) {
+    constructor(private formBuilder: FormBuilder,
+                private clientesService: ClientesService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit() {
-        this.clienteForm = this.formBuilder.group({
-            uuid: '',
-            nome: '',
-            email: ''
+        var id = this.route.params.subscribe(params => {
+            var uuid = params['uuid'];
+
+            console.log('id:' + id);
+            console.log('params :', params);
+
+            this.clientesService.get(uuid)
+                .subscribe(cliente => {
+                        console.log('cliente');
+                        console.log(cliente);
+                        this.cliente = cliente;
+
+
+                        this.clienteForm = this.formBuilder.group({
+                            uuid: [this.cliente.uuid],
+                            nome: [this.cliente.nome],
+                            email: [this.cliente.email]
+                        });
+
+
+                    },
+                    response => {
+                        console.log('response:');
+                        console.log(response);
+                    });
         });
+
     }
 
     ngOnDestroy() {
 
+    }
+
+    salvar() {
+        console.log('=> salvar!');
     }
 }
