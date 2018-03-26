@@ -9,7 +9,7 @@ import {fuseAnimations} from '../../../../../@fuse/animations';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Cliente} from '../../../../services/cliente/cliente.model';
 import {ClientesService} from '../../../../services/cliente/clientes.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     templateUrl: './cliente.persist.component.html',
@@ -24,7 +24,8 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
 
     constructor(private formBuilder: FormBuilder,
                 private clientesService: ClientesService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit() {
@@ -62,6 +63,13 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     }
 
     salvar() {
-        console.log('=> salvar!');
+        console.log('<salvar>');
+        const data = this.clienteForm.value;
+        this.clientesService.save(data)
+            .subscribe(cliente => {
+                console.log(cliente);
+                this.router.navigate(['clientes'])
+            });
+        console.log('</salvar>');
     }
 }

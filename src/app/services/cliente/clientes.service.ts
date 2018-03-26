@@ -7,17 +7,20 @@ import {Cliente} from './cliente.model';
 @Injectable()
 export class ClientesService {
 
-    private serviceUrl = 'http://localhost:9001/api/v1/clientes/?page=';
-    private loadUrl = 'http://localhost:9001/api/v1/clientes/';
+    private baseUrl = 'http://localhost:9001';
 
     constructor(private http: HttpClient) {
     }
 
     search(page: number): Observable<ClientesApi> {
-        return this.http.get<ClientesApi>(this.serviceUrl + (page + 1));
+        return this.http.get<ClientesApi>(this.baseUrl + '/api/v1/clientes/?page=' + (page + 1));
     }
 
     get(uuid: string): Observable<Cliente> {
-        return this.http.get<Cliente>(this.loadUrl + uuid);
+        return this.http.get<Cliente>(this.baseUrl + '/api/v1/clientes/' + uuid);
+    }
+
+    save(cliente: Cliente): Observable<Cliente> {
+        return this.http.put<Cliente>(this.baseUrl + '/api/v1/clientes/' + cliente.uuid + '/', cliente);
     }
 }
