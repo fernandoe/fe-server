@@ -9,22 +9,22 @@ export class ClientesService {
 
     private baseUrl = 'http://localhost:9001';
 
-    constructor(private http: HttpClient) {
+    constructor(private httpClient: HttpClient) {
     }
 
     search(page: number): Observable<ClientesApi> {
-        return this.http.get<ClientesApi>(this.baseUrl + '/api/v1/clientes/?page=' + (page + 1));
+        return this.httpClient.get<ClientesApi>(this.baseUrl + '/api/v1/clientes/?page=' + (page + 1));
     }
 
     get(uuid: string): Observable<Cliente> {
-        return this.http.get<Cliente>(this.baseUrl + '/api/v1/clientes/' + uuid);
+        return this.httpClient.get<Cliente>(this.baseUrl + '/api/v1/clientes/' + uuid);
     }
 
     create(): Observable<Cliente> {
-        return this.http.post<Cliente>(this.baseUrl + '/api/v1/clientes/novo');
+        return this.httpClient.post<Cliente>(this.baseUrl + '/api/v1/clientes/novo', {});
     }
 
     save(cliente: Cliente): Observable<Cliente> {
-        return this.http.put<Cliente>(this.baseUrl + '/api/v1/clientes/' + cliente.uuid + '/', cliente);
+        return this.httpClient.put<Cliente>(this.baseUrl + '/api/v1/clientes/' + cliente.uuid + '/', cliente);
     }
 }
