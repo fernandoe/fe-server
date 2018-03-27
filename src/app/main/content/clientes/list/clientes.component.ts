@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import {Observable} from 'rxjs/Observable';
 import {ClientesService} from '../../../../services/cliente/clientes.service';
 import {fuseAnimations} from '../../../../../@fuse/animations';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'fe-clientes',
@@ -21,13 +22,15 @@ export class ClientesComponent implements AfterViewInit {
 
     displayedColumns = ['nome', 'email', 'telefone_celular'];
     resultsLength = 0;
+    isWorking = false;
     isLoadingResults = false;
     isRateLimitReached = false;
     dataSource = new MatTableDataSource();
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
 
-    constructor(private clientesService: ClientesService) {
+    constructor(private clientesService: ClientesService,
+                private router: Router) {
     }
 
     ngAfterViewInit(): void {
@@ -41,5 +44,17 @@ export class ClientesComponent implements AfterViewInit {
                 return data.results;
             })
             .subscribe(data => this.dataSource.data = data);
+    }
+
+    clienteNovo() {
+        this.isWorking = true;
+        this.clientesService.create()
+            .subscribe(cliente => {
+                this.router.navigate(['clientes', cliente.uuid])
+                this.isWorking = false;
+            }, error => {
+                console.log('ERROR: ', error);
+                this.isWorking = false;
+            });
     }
 }

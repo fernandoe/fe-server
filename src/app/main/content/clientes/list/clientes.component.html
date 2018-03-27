@@ -31,7 +31,8 @@
             <!-- / PESQUISA -->
 
             <button mat-raised-button
-                    [routerLink]="'/clientes/novo'"
+                    (click)="clienteNovo()"
+                    [disabled]="isWorking"
                     class="add-product-button mat-white-bg my-12 mt-sm-0">
                 <span>Novo Cliente</span>
             </button>

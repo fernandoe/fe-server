@@ -20,6 +20,10 @@ export class ClientesService {
         return this.http.get<Cliente>(this.baseUrl + '/api/v1/clientes/' + uuid);
     }
 
+    create(): Observable<Cliente> {
+        return this.http.post<Cliente>(this.baseUrl + '/api/v1/clientes/novo');
+    }
+
     save(cliente: Cliente): Observable<Cliente> {
         return this.http.put<Cliente>(this.baseUrl + '/api/v1/clientes/' + cliente.uuid + '/', cliente);
     }
