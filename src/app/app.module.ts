@@ -16,10 +16,9 @@ import {FuseMainModule} from './main/main.module';
 import {FuseSampleModule} from './main/content/sample/sample.module';
 import {LoginModule} from './main/content/login/login.module';
 import {TokenInterceptor} from './services/conta/token.interceptor';
-import {FuseContactsModule} from "./main/content/contacts/contacts.module";
-import {InMemoryWebApiModule} from "angular-in-memory-web-api";
-import {FuseFakeDbService} from "./fuse-fake-db/fuse-fake-db.service";
-import {ClientesModule} from "./main/content/clientes/clientes.module";
+import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
+import {FuseFakeDbService} from './fuse-fake-db/fuse-fake-db.service';
+import {ClientesModule} from './main/content/clientes/clientes.module';
 
 
 const appRoutes: Routes = [
@@ -50,8 +49,6 @@ const appRoutes: Routes = [
         FuseSharedModule,
         FuseMainModule,
         FuseSampleModule,
-
-        // FuseContactsModule,
 
         LoginModule,
         ClientesModule
