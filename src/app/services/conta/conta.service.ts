@@ -2,15 +2,18 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
+import {Conta} from './conta.model';
 
 @Injectable()
 export class ContaService {
+
+    private baseUrl = 'http://localhost:9000';
 
     constructor(private httpClient: HttpClient) {
     }
 
     login(email: string, password: string): Observable<boolean> {
-        return this.httpClient.post('http://127.0.0.1:9000/auth/', {
+        return this.httpClient.post(this.baseUrl + '/auth/', {
             'email': email,
             'password': password
         }).map((response: Response) => {
@@ -34,5 +37,9 @@ export class ContaService {
 
     isAuthenticated() {
         return this.getToken() != null;
+    }
+
+    me(): Observable<Conta> {
+        return this.httpClient.get<Conta>(this.baseUrl + '/me');
     }
 }
