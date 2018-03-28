@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
 
@@ -11,14 +11,14 @@ import {ContaService} from '../../services/conta/conta.service';
     templateUrl: './toolbar.component.html',
     styleUrls: ['./toolbar.component.scss']
 })
-
-export class FuseToolbarComponent {
+export class FuseToolbarComponent implements OnInit {
     userStatusOptions: any[];
     languages: any;
     selectedLanguage: any;
     showLoadingBar: boolean;
     horizontalNav: boolean;
     noNav: boolean;
+    username: string;
 
     constructor(private router: Router,
                 private fuseConfig: FuseConfigService,
@@ -83,6 +83,13 @@ export class FuseToolbarComponent {
             this.noNav = settings.layout.navigation === 'none';
         });
 
+    }
+
+    ngOnInit(): void {
+        this.contaService.me()
+            .subscribe(conta => {
+                this.username = conta.email;
+            });
     }
 
     toggleSidebarOpened(key) {
