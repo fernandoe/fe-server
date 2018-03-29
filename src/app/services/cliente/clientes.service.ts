@@ -3,11 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {ClientesApi} from './clientes.api';
 import {Cliente} from './cliente.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class ClientesService {
 
-    private baseUrl = 'http://localhost:9001';
+    private baseUrl = environment.pessoaServerUrl;
 
     constructor(private httpClient: HttpClient) {
     }

@@ -5,5 +5,7 @@
 
 export const environment = {
     production: false,
-    hmr       : false
+    hmr: false,
+    contaServerUrl: 'http://localhost:9000',
+    pessoaServerUrl: 'http://localhost:9001',
 };

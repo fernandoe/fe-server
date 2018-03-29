@@ -3,11 +3,12 @@ import {HttpClient} from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import {Conta} from './conta.model';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class ContaService {
 
-    private baseUrl = 'http://localhost:9000';
+    private baseUrl = environment.contaServerUrl;
 
     constructor(private httpClient: HttpClient) {
     }
