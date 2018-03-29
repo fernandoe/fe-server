@@ -1,16 +1,43 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import {FuseSharedModule} from '@fuse/shared.module';
 
-import { FuseContentComponent } from 'app/main/content/content.component';
+import {FuseContentComponent} from 'app/main/content/content.component';
+
+import {
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatToolbarModule
+} from '@angular/material';
 
 @NgModule({
     declarations: [
-        FuseContentComponent
+        FuseContentComponent,
     ],
-    imports     : [
+    imports: [
         RouterModule,
+
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatRippleModule,
+        MatSidenavModule,
+        MatTableModule,
+
 
         FuseSharedModule,
     ],
@@ -18,6 +45,5 @@ import { FuseContentComponent } from 'app/main/content/content.component';
         FuseContentComponent
     ]
 })
-export class FuseContentModule
-{
+export class FuseContentModule {
 }
