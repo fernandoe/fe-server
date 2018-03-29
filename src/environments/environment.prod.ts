@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
     hmr: false,
-    contaServerUrl: 'http://52.234.130.35',
-    pessoaServerUrl: 'http://52.234.150.205',
+    contaServerUrl: 'http://52.170.156.1',
+    pessoaServerUrl: 'http://40.71.252.212',
 };
