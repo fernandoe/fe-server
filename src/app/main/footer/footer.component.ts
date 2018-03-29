@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-    selector   : 'fuse-footer',
+    selector: 'fuse-footer',
     templateUrl: './footer.component.html',
-    styleUrls  : ['./footer.component.scss']
+    styleUrls: ['./footer.component.scss']
 })
-export class FuseFooterComponent
-{
+export class FuseFooterComponent {
 
-    constructor()
-    {
+    constructor() {
     }
 }
