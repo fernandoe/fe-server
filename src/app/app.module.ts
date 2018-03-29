@@ -13,7 +13,6 @@ import {fuseConfig} from './fuse-config';
 
 import {AppComponent} from './app.component';
 import {FuseMainModule} from './main/main.module';
-import {FuseSampleModule} from './main/content/sample/sample.module';
 import {LoginModule} from './main/content/login/login.module';
 import {TokenInterceptor} from './services/conta/token.interceptor';
 import {InMemoryWebApiModule} from 'angular-in-memory-web-api';
@@ -24,7 +23,7 @@ import {ClientesModule} from './main/content/clientes/clientes.module';
 const appRoutes: Routes = [
     {
         path: '**',
-        redirectTo: 'sample'
+        redirectTo: 'clientes'
     }
 ];
 
@@ -48,7 +47,6 @@ const appRoutes: Routes = [
         FuseModule.forRoot(fuseConfig),
         FuseSharedModule,
         FuseMainModule,
-        FuseSampleModule,
 
         LoginModule,
         ClientesModule
