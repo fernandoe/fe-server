@@ -4,17 +4,40 @@ import {RouterModule} from '@angular/router';
 import {FuseSharedModule} from '@fuse/shared.module';
 
 import {FuseContentComponent} from 'app/main/content/content.component';
-import {FuseContactsSelectedBarComponent} from './contacts/selected-bar/selected-bar.component';
-import {FuseContactsMainSidenavComponent} from './contacts/sidenavs/main/main.component';
+
+import {
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatMenuModule,
+    MatRippleModule,
+    MatSidenavModule,
+    MatTableModule,
+    MatToolbarModule
+} from '@angular/material';
 
 @NgModule({
     declarations: [
         FuseContentComponent,
-        FuseContactsSelectedBarComponent,
-        FuseContactsMainSidenavComponent,
     ],
     imports: [
         RouterModule,
+
+        MatIconModule,
+        MatMenuModule,
+        MatToolbarModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatInputModule,
+        MatRippleModule,
+        MatSidenavModule,
+        MatTableModule,
+
 
         FuseSharedModule,
     ],
