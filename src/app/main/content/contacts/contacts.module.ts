@@ -11,7 +11,7 @@ import { FuseContactsMainSidenavComponent } from './sidenavs/main/main.component
 import { FuseContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
 import { FuseContactsContactListComponent } from './contact-list/contact-list.component';
-import { FuseContactsSelectedBarComponent } from './selected-bar/selected-bar.component';
+// import { FuseContactsSelectedBarComponent } from './selected-bar/selected-bar.component';
 import { FuseContactsContactFormDialogComponent } from './contact-form/contact-form.component';
 
 const routes: Routes = [
@@ -28,7 +28,7 @@ const routes: Routes = [
     declarations   : [
         FuseContactsComponent,
         FuseContactsContactListComponent,
-        FuseContactsSelectedBarComponent,
+        // FuseContactsSelectedBarComponent,
         FuseContactsMainSidenavComponent,
         FuseContactsContactFormDialogComponent
     ],

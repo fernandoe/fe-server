@@ -17,7 +17,7 @@ import {
     MatToolbarModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
-import {FuseContactsSelectedBarComponent} from '../contacts/selected-bar/selected-bar.component';
+// import {FuseContactsSelectedBarComponent} from '../contacts/selected-bar/selected-bar.component';
 import {FuseContactsMainSidenavComponent} from '../contacts/sidenavs/main/main.component';
 import {FuseContactsContactFormDialogComponent} from '../contacts/contact-form/contact-form.component';
 import {FuseConfirmDialogModule} from '../../../../@fuse/components';
@@ -36,7 +36,7 @@ const routes = [{
 
 @NgModule({
     declarations: [
-        FuseContactsSelectedBarComponent,
+        // FuseContactsSelectedBarComponent,
         FuseContactsMainSidenavComponent,
         FuseContactsContactFormDialogComponent,
 
