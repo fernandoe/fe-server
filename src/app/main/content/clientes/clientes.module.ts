@@ -18,7 +18,7 @@ import {
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 // import {FuseContactsSelectedBarComponent} from '../contacts/selected-bar/selected-bar.component';
-import {FuseContactsMainSidenavComponent} from '../contacts/sidenavs/main/main.component';
+// import {FuseContactsMainSidenavComponent} from '../contacts/sidenavs/main/main.component';
 import {FuseContactsContactFormDialogComponent} from '../contacts/contact-form/contact-form.component';
 import {FuseConfirmDialogModule} from '../../../../@fuse/components';
 import {FuseSharedModule} from '../../../../@fuse/shared.module';
@@ -37,7 +37,7 @@ const routes = [{
 @NgModule({
     declarations: [
         // FuseContactsSelectedBarComponent,
-        FuseContactsMainSidenavComponent,
+        // FuseContactsMainSidenavComponent,
         FuseContactsContactFormDialogComponent,
 
         ClientesComponent,

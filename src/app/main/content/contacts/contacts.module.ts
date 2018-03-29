@@ -7,7 +7,7 @@ import { MatButtonModule, MatCheckboxModule, MatDatepickerModule, MatFormFieldMo
 import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseConfirmDialogModule } from '@fuse/components';
 
-import { FuseContactsMainSidenavComponent } from './sidenavs/main/main.component';
+// import { FuseContactsMainSidenavComponent } from './sidenavs/main/main.component';
 import { FuseContactsComponent } from './contacts.component';
 import { ContactsService } from './contacts.service';
 import { FuseContactsContactListComponent } from './contact-list/contact-list.component';
@@ -29,7 +29,7 @@ const routes: Routes = [
         FuseContactsComponent,
         FuseContactsContactListComponent,
         // FuseContactsSelectedBarComponent,
-        FuseContactsMainSidenavComponent,
+        // FuseContactsMainSidenavComponent,
         FuseContactsContactFormDialogComponent
     ],
     imports        : [
