@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
 
 import {FuseConfigService} from '@fuse/services/config.service';
 import {FuseSidebarService} from '@fuse/components/sidebar/sidebar.service';
@@ -23,7 +22,6 @@ export class FuseToolbarComponent implements OnInit {
     constructor(private router: Router,
                 private fuseConfig: FuseConfigService,
                 private sidebarService: FuseSidebarService,
-                private translate: TranslateService,
                 private contaService: ContaService) {
         this.userStatusOptions = [
             {
@@ -99,14 +97,6 @@ export class FuseToolbarComponent implements OnInit {
     search(value) {
         // Do your search here...
         console.log(value);
-    }
-
-    setLanguage(lang) {
-        // Set the selected language for toolbar
-        this.selectedLanguage = lang;
-
-        // Use the selected language for translations
-        this.translate.use(lang.id);
     }
 
     logout() {
