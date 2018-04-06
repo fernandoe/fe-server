@@ -8,4 +8,6 @@ export const environment = {
     hmr: false,
     contaServerUrl: 'http://localhost:9000',
     pessoaServerUrl: 'http://localhost:9001',
+    enderecoServerUrl: 'http://localhost:9002',
+    pagamentoServerUrl: 'http://localhost:9003',
 };

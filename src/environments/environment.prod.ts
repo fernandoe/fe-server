@@ -1,6 +1,8 @@
 export const environment = {
     production: true,
     hmr: false,
-    contaServerUrl: 'http://52.170.156.1',
-    pessoaServerUrl: 'http://40.71.252.212',
+    contaServerUrl: 'https://conta.ms.fernandoe.com',
+    pessoaServerUrl: 'https://pessoa.ms.fernandoe.com',
+    enderecoServerUrl: 'https://endereco.ms.fernandoe.com',
+    pagamentoServerUrl: 'https://pagamento.ms.fernandoe.com'
 };
