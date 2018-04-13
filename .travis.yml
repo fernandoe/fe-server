@@ -21,11 +21,9 @@ install:
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH; fi`
   - docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
   - docker tag $TRAVIS_REPO_SLUG:$TAG $TRAVIS_REPO_SLUG:$COMMIT
+  - docker push $TRAVIS_REPO_SLUG
 
 script: true
-
-after_success:
-  - docker push $TRAVIS_REPO_SLUG
 
 deploy:
   skip_cleanup: true
