@@ -20,6 +20,16 @@ export class TokenInterceptor implements HttpInterceptor {
         });
 
         return next.handle(request).do((event: HttpEvent<any>) => {
+            // if (this.contaService.isLoggedIn()) {
+            //     this.contaService.refreshToken();
+            //
+            //     return true;
+            // } else {
+            //     this.contaService.logout();
+            //     this.router.navigate(['login']);
+            //
+            //     return false;
+            // }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 403) {
