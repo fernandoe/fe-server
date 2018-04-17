@@ -43,12 +43,12 @@ export class ContaService {
 
 
     refreshToken() {
-        if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
-            return this.http.post(
-                this.apiRoot.concat('refresh-token/'),
-                {token: this.token}
-            ).do(response => this.setSession(response)).shareReplay().subscribe();
-        }
+        // if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+        //     return this.httpClient.post(
+        //         this.baseUrl.concat('refresh-token/'),
+        //         {token: this.getToken()}
+        //     ).do(response => this.setSession(response)).shareReplay().subscribe();
+        // }
     }
 
     getExpiration() {
@@ -77,4 +77,11 @@ export class ContaService {
         localStorage.setItem('token', authResult.token);
         localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
     }
+}
+
+interface JWTPayload {
+    user_id: number;
+    username: string;
+    email: string;
+    exp: number;
 }
