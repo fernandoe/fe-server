@@ -31,7 +31,7 @@ deploy:
   script:
     - "./scripts/deploy.sh"
   on:
+    tags: true
     branch:
       - master
       - "/(\\d+\\.)?(\\d+\\.)?(\\*|\\d+)$/"
-      - feature-show-error-message-on-login
