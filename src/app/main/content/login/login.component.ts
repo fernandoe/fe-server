@@ -5,6 +5,8 @@ import {FuseConfigService} from '@fuse/services/config.service';
 import {fuseAnimations} from '@fuse/animations';
 import {ContaService} from '../../../services/conta/conta.service';
 import {Router} from '@angular/router';
+import {FELoginErrorDialog} from '../../../components/dialogs/login-error-dialog/fe-login-error-dialog';
+import {MatDialog} from '@angular/material';
 
 @Component({
     selector: 'fuse-login',
@@ -19,7 +21,8 @@ export class FuseLoginComponent implements OnInit {
     constructor(private fuseConfig: FuseConfigService,
                 private formBuilder: FormBuilder,
                 private contaService: ContaService,
-                private router: Router) {
+                private router: Router,
+                public dialog: MatDialog) {
 
         this.fuseConfig.setConfig({
             layout: {
@@ -74,6 +77,12 @@ export class FuseLoginComponent implements OnInit {
                 } else {
                     console.log('TODO: O login não teve sucesso, verificar!');
                 }
+            }, error => {
+                this.dialog.open(FELoginErrorDialog, {
+                    data: {
+                        message: error.error.non_field_errors[0]
+                    }
+                });
             });
     }
 }

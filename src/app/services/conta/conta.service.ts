@@ -5,6 +5,9 @@ import {Observable} from 'rxjs/Observable';
 import {Conta} from './conta.model';
 import {environment} from '../../../environments/environment';
 
+import * as jwt from 'jsonwebtoken';
+import * as moment from 'moment';
+
 @Injectable()
 export class ContaService {
 
@@ -19,28 +22,66 @@ export class ContaService {
             'password': password
         }).map((response: Response) => {
             const token = response['token'];
-            this.saveToken(token);
+            const payload = <JWTPayload> jwt.decode(token);
+            const expiresAt = moment.unix(payload.exp);
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+
             return true;
         });
     }
 
     logout() {
         localStorage.removeItem('token');
-    }
-
-    saveToken(token: string) {
-        localStorage.setItem('token', token);
+        localStorage.removeItem('expires_at');
     }
 
     getToken() {
         return localStorage.getItem('token');
     }
 
-    isAuthenticated() {
-        return this.getToken() != null;
+
+    refreshToken() {
+        // if (moment().isBetween(this.getExpiration().subtract(1, 'days'), this.getExpiration())) {
+        //     return this.httpClient.post(
+        //         this.baseUrl.concat('refresh-token/'),
+        //         {token: this.getToken()}
+        //     ).do(response => this.setSession(response)).shareReplay().subscribe();
+        // }
+    }
+
+    getExpiration() {
+        const expiration = localStorage.getItem('expires_at');
+        const expiresAt = JSON.parse(expiration);
+        return moment(expiresAt);
+    }
+
+    isLoggedIn() {
+        return moment().isBefore(this.getExpiration());
+    }
+
+    isLoggedOut() {
+        return !this.isLoggedIn();
     }
 
     me(): Observable<Conta> {
         return this.httpClient.get<Conta>(this.baseUrl + '/me');
     }
+
+    private setSession(authResult) {
+        const token = authResult.token;
+        const payload = <JWTPayload> jwt.decode(token);
+        const expiresAt = moment.unix(payload.exp);
+
+        localStorage.setItem('token', authResult.token);
+        localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()));
+    }
+}
+
+interface JWTPayload {
+    user_id: number;
+    username: string;
+    email: string;
+    exp: number;
 }

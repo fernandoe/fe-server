@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
 
-import { MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import {FuseSharedModule} from '@fuse/shared.module';
 
-import { FuseLoginComponent } from './login.component';
+import {FuseLoginComponent} from './login.component';
+import {FELoginErrorDialog} from '../../../components/dialogs/login-error-dialog/fe-login-error-dialog';
 
 const routes = [{
-  path: 'login',
-  component: FuseLoginComponent
+    path: 'login',
+    component: FuseLoginComponent
 }];
 
 @NgModule({
     declarations: [
-        FuseLoginComponent
+        FuseLoginComponent,
+        FELoginErrorDialog
     ],
-    imports     : [
+    imports: [
         RouterModule.forChild(routes),
 
         MatButtonModule,
@@ -25,8 +27,10 @@ const routes = [{
         MatInputModule,
 
         FuseSharedModule
+    ],
+    entryComponents: [
+        FELoginErrorDialog
     ]
 })
-export class LoginModule
-{
+export class LoginModule {
 }
