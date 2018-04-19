@@ -78,9 +78,6 @@ export class FuseLoginComponent implements OnInit {
                     console.log('TODO: O login não teve sucesso, verificar!');
                 }
             }, error => {
-                console.log('error');
-                console.log(error);
-
                 this.dialog.open(FELoginErrorDialog, {
                     data: {
                         message: error.error.non_field_errors[0]
