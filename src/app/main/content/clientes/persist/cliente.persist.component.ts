@@ -10,6 +10,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Cliente} from '../../../../services/cliente/cliente.model';
 import {ClientesService} from '../../../../services/cliente/clientes.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import {FeEnderecoDialog} from '../../../../components/dialogs/endereco-dialog/fe-endereco-dialog';
 
 @Component({
     templateUrl: './cliente.persist.component.html',
@@ -21,11 +23,14 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
 
     cliente: Cliente;
     clienteForm: FormGroup;
+    enderecoDialogRef: MatDialogRef<FeEnderecoDialog>;
+
 
     constructor(private formBuilder: FormBuilder,
                 private clientesService: ClientesService,
                 private route: ActivatedRoute,
-                private router: Router) {
+                private router: Router,
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -68,8 +73,12 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
         this.clientesService.save(data)
             .subscribe(cliente => {
                 console.log(cliente);
-                this.router.navigate(['clientes'])
+                this.router.navigate(['clientes']);
             });
         console.log('</salvar>');
+    }
+
+    adicionarEndereco() {
+        this.enderecoDialogRef = this.dialog.open(FeEnderecoDialog, {});
     }
 }

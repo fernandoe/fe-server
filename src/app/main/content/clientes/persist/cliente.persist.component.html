@@ -20,7 +20,7 @@
                 <div fxLayout="column" fxLayoutAlign="start start"
                      *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">
                     <div class="h2" *ngIf="pageType ==='edit'">
-                        {{product.name}}
+                        {{ product.name }}
                     </div>
                     <div class="h2" *ngIf="pageType ==='new'">
                         New Product
@@ -48,9 +48,7 @@
             <div class="content">
 
                 <form name="productForm" [formGroup]="clienteForm" class="product w-100-p" fxLayout="column" fxFlex>
-
                     <mat-tab-group>
-
                         <mat-tab label="Informações Básicas">
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
@@ -68,6 +66,13 @@
                                            formControlName="email"
                                            placeholder="E-mail">
                                 </mat-form-field>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Endereço">
+                            <div class="tab-content">
+
+                                 <button mat-raised-button color="accent" (click)="adicionarEndereco()">Adicionar Endereço</button>
+
                             </div>
                         </mat-tab>
                     </mat-tab-group>

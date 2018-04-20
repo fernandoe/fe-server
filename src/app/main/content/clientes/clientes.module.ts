@@ -23,6 +23,7 @@ import {FuseSharedModule} from '../../../../@fuse/shared.module';
 import {ClientesService} from '../../../services/cliente/clientes.service';
 import {ClientesComponent} from './list/clientes.component';
 import {ClientePersistComponent} from './persist/cliente.persist.component';
+import {FeEnderecoDialog} from '../../../components/dialogs/endereco-dialog/fe-endereco-dialog';
 
 const routes = [{
     path: 'clientes',
@@ -36,6 +37,7 @@ const routes = [{
     declarations: [
         ClientesComponent,
         ClientePersistComponent,
+        FeEnderecoDialog
     ],
     imports: [
         RouterModule.forChild(routes),
@@ -63,6 +65,9 @@ const routes = [{
     ],
     providers: [
         ClientesService
+    ],
+    entryComponents: [
+        FeEnderecoDialog
     ]
 })
 export class ClientesModule {
