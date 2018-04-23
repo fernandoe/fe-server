@@ -68,14 +68,12 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     }
 
     salvar() {
-        console.log('<salvar>');
         const data = this.clienteForm.value;
         this.clientesService.save(data)
             .subscribe(cliente => {
                 console.log(cliente);
                 this.router.navigate(['clientes']);
             });
-        console.log('</salvar>');
     }
 
     adicionarEndereco() {
