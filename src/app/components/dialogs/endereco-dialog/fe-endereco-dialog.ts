@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {EnderecosService} from '../../../services/endereco/enderecos.service';
-import {Endereco} from '../../../services/endereco/endereco.model';
+import {ClientesService} from '../../../services/cliente/clientes.service';
 
 @Component({
     selector: 'fe-endereco-dialog',
@@ -12,10 +12,11 @@ export class FeEnderecoDialog implements OnInit {
 
     message: string;
     form: FormGroup;
-    endereco: Endereco;
+    // endereco: Endereco;
 
     constructor(private builder: FormBuilder,
                 private enderecosService: EnderecosService,
+                private clientesService: ClientesService,
                 private dialogRef: MatDialogRef<FeEnderecoDialog>,
                 @Inject(MAT_DIALOG_DATA) private data
     ) {
@@ -24,6 +25,14 @@ export class FeEnderecoDialog implements OnInit {
 
     ngOnInit(): void {
         this.form = this.builder.group({
+            uuid: [''],
+            logradouro: [''],
+            numero: [''],
+            complemento: [''],
+            bairro: [''],
+            cidade: [''],
+            estado: [''],
+            cep: ['']
             // uuid: [this.endereco.uuid],
             // logradouro: [this.endereco.logradouro],
             // numero: [this.endereco.numero],
@@ -45,6 +54,11 @@ export class FeEnderecoDialog implements OnInit {
         console.log('data', data);
         this.enderecosService.create(data)
             .subscribe(endereco => {
+                console.log('ENDERECO SALVO COM SUCESSO!!');
+
+                this.clientesService.patch('', {
+                    endereco: endereco.uuid
+                });
                 console.log(endereco);
             });
         console.log('</salvar>');
