@@ -30,6 +30,6 @@ export class ClientesService {
     }
 
     patch(uuid: string, params: any) {
-        return this.httpClient.patch(this.baseUrl + '/api/v1/clientes/' + uuid, params);
+        return this.httpClient.patch(this.baseUrl + '/api/v1/clientes/' + uuid + '/', params);
     }
 }

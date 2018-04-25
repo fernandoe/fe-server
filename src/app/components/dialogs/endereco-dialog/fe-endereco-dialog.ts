@@ -55,10 +55,13 @@ export class FeEnderecoDialog implements OnInit {
         this.enderecosService.create(data)
             .subscribe(endereco => {
                 console.log('ENDERECO SALVO COM SUCESSO!!');
-
-                this.clientesService.patch('', {
+                this.clientesService.patch('fbe2d022-23a1-4e2d-ae0c-aa7b99bd407b', {
                     endereco: endereco.uuid
+                }).subscribe(cliente => {
+                    console.log('patch no cliente');
+                    console.log(cliente);
                 });
+
                 console.log(endereco);
             });
         console.log('</salvar>');
