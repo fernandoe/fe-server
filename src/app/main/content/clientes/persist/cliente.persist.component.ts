@@ -6,7 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 import {fuseAnimations} from '../../../../../@fuse/animations';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {Cliente} from '../../../../services/cliente/cliente.model';
 import {ClientesService} from '../../../../services/cliente/clientes.service';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -39,6 +39,11 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.clienteForm = new FormGroup({
+            nome: new FormControl(),
+            email: new FormControl()
+        });
+
         this.route.params.subscribe(params => {
             this.uuid = params['uuid'];
             console.log('PARAMS:', params);
@@ -60,7 +65,7 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
                                 this.endereco = endereco;
                             }, error => {
                                 console.log('ERROR (EnderecosService.get):', error);
-                            })
+                            });
                         }
                     },
                     response => {
