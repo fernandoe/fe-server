@@ -70,10 +70,12 @@
                         </mat-tab>
                         <mat-tab label="Endereço">
                             <div class="tab-content">
-
-                                <fe-endereco [data]="endereco"></fe-endereco>
-                                 <button mat-raised-button color="accent" (click)="adicionarEndereco()">Adicionar Endereço</button>
-
+                                <div class="m-20">
+                                    <fe-endereco [data]="endereco"></fe-endereco>
+                                    <button mat-raised-button color="accent" (click)="adicionarEndereco()">
+                                        Adicionar Endereço
+                                    </button>
+                                </div>
                             </div>
                         </mat-tab>
                     </mat-tab-group>
