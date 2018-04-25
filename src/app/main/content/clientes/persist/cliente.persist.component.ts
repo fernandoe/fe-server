@@ -23,6 +23,7 @@ import {Endereco} from '../../../../services/endereco/endereco.model';
 })
 export class ClientePersistComponent implements OnInit, OnDestroy {
 
+    uuid: string;
     cliente: Cliente;
     endereco: Endereco;
     clienteForm: FormGroup;
@@ -38,13 +39,11 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        var id = this.route.params.subscribe(params => {
-            var uuid = params['uuid'];
+        this.route.params.subscribe(params => {
+            this.uuid = params['uuid'];
+            console.log('PARAMS:', params);
 
-            console.log('id:' + id);
-            console.log('params :', params);
-
-            this.clientesService.get(uuid)
+            this.clientesService.get(this.uuid)
                 .subscribe(cliente => {
                         console.log('CLIENTE:', cliente);
 
@@ -57,7 +56,7 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
 
                         if (cliente.endereco) {
                             this.enderecosService.get(cliente.endereco).subscribe(endereco => {
-                                console.log('ENDERECO:', endereco)
+                                console.log('ENDERECO:', endereco);
                                 this.endereco = endereco;
                             }, error => {
                                 console.log('ERROR (EnderecosService.get):', error);
@@ -68,7 +67,6 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
                         console.log('ERROR:', response);
                     });
         });
-
     }
 
     ngOnDestroy() {
@@ -85,6 +83,10 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     }
 
     adicionarEndereco() {
-        this.enderecoDialogRef = this.dialog.open(FeEnderecoDialog, {});
+        this.enderecoDialogRef = this.dialog.open(FeEnderecoDialog, {
+            data: {
+                clienteUuid: this.uuid
+            }
+        });
     }
 }

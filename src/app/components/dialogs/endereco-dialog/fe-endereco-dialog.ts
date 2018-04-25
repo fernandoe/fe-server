@@ -10,9 +10,9 @@ import {ClientesService} from '../../../services/cliente/clientes.service';
 })
 export class FeEnderecoDialog implements OnInit {
 
+    parentUuid: string;
     message: string;
     form: FormGroup;
-    // endereco: Endereco;
 
     constructor(private builder: FormBuilder,
                 private enderecosService: EnderecosService,
@@ -24,6 +24,8 @@ export class FeEnderecoDialog implements OnInit {
     }
 
     ngOnInit(): void {
+        this.parentUuid = this.data['clienteUuid'];
+
         this.form = this.builder.group({
             uuid: [''],
             logradouro: [''],
@@ -51,11 +53,11 @@ export class FeEnderecoDialog implements OnInit {
     save() {
         console.log('<salvar>');
         const data = this.form.value;
-        console.log('data', data);
+        console.log('DATA:', data);
         this.enderecosService.create(data)
             .subscribe(endereco => {
                 console.log('ENDERECO SALVO COM SUCESSO!!');
-                this.clientesService.patch('fbe2d022-23a1-4e2d-ae0c-aa7b99bd407b', {
+                this.clientesService.patch(this.parentUuid, {
                     endereco: endereco.uuid
                 }).subscribe(cliente => {
                     console.log('patch no cliente');
