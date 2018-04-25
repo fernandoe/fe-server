@@ -12,6 +12,10 @@ export class EnderecosService {
     constructor(private httpClient: HttpClient) {
     }
 
+    get(uuid: string): Observable<Endereco> {
+        return this.httpClient.get<Endereco>(this.baseUrl + '/api/v1/enderecos/' + uuid);
+    }
+
     create(endereco: Endereco): Observable<Endereco> {
         return this.httpClient.post<Endereco>(this.baseUrl + '/api/v1/enderecos/', endereco);
     }
