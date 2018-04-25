@@ -10,6 +10,7 @@ import {ClientesService} from '../../../services/cliente/clientes.service';
 })
 export class FeEnderecoDialog implements OnInit {
 
+    uuid: string;
     parentUuid: string;
     message: string;
     form: FormGroup;
@@ -25,6 +26,7 @@ export class FeEnderecoDialog implements OnInit {
 
     ngOnInit(): void {
         this.parentUuid = this.data['clienteUuid'];
+        this.uuid = this.data['uuid'];
 
         this.form = this.builder.group({
             uuid: [''],
@@ -35,15 +37,22 @@ export class FeEnderecoDialog implements OnInit {
             cidade: [''],
             estado: [''],
             cep: ['']
-            // uuid: [this.endereco.uuid],
-            // logradouro: [this.endereco.logradouro],
-            // numero: [this.endereco.numero],
-            // complemento: [this.endereco.complemento],
-            // bairro: [this.endereco.bairro],
-            // cidade: [this.endereco.cidade],
-            // estado: [this.endereco.estado],
-            // cep: [this.endereco.cep],
         });
+
+        if (this.uuid) {
+            this.enderecosService.get(this.uuid).subscribe(endereco => {
+                this.form = this.builder.group({
+                    uuid: [endereco.uuid],
+                    logradouro: [endereco.logradouro],
+                    numero: [endereco.numero],
+                    complemento: [endereco.complemento],
+                    bairro: [endereco.bairro],
+                    cidade: [endereco.cidade],
+                    estado: [endereco.estado],
+                    cep: [endereco.cep]
+                });
+            });
+        }
     }
 
     cancel() {

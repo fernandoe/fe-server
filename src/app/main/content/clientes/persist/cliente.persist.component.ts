@@ -28,6 +28,7 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
     endereco: Endereco;
     clienteForm: FormGroup;
     enderecoDialogRef: MatDialogRef<FeEnderecoDialog>;
+    uiPersistButton: string;
 
 
     constructor(private formBuilder: FormBuilder,
@@ -67,6 +68,7 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
                                 console.log('ERROR (EnderecosService.get):', error);
                             });
                         }
+                        this.uiPersistButton = ((cliente.endereco) ? ('Editar Endereço') : ('Adicionar Endereço'));
                     },
                     response => {
                         console.log('ERROR:', response);
@@ -87,9 +89,10 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
             });
     }
 
-    adicionarEndereco() {
+    persistirEndereco() {
         this.enderecoDialogRef = this.dialog.open(FeEnderecoDialog, {
             data: {
+                uuid: (this.endereco) ? (this.endereco.uuid) : (false),
                 clienteUuid: this.uuid
             }
         });

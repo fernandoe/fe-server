@@ -70,9 +70,9 @@
                         <mat-tab label="Endereço">
                             <div class="tab-content">
                                 <div class="m-20">
-                                    <fe-endereco [data]="endereco"></fe-endereco>
-                                    <button mat-raised-button color="accent" (click)="adicionarEndereco()">
-                                        Adicionar Endereço
+                                    <fe-endereco *ngIf="endereco" [data]="endereco"></fe-endereco>
+                                    <button mat-raised-button color="accent" (click)="persistirEndereco()">
+                                        {{ uiPersistButton }} 789
                                     </button>
                                 </div>
                             </div>
