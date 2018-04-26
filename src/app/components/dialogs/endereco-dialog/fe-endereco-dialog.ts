@@ -60,24 +60,18 @@ export class FeEnderecoDialog implements OnInit {
     }
 
     save() {
-        console.log('Salvando o endereço...');
         const data = this.form.value;
-        console.log('DATA:', data);
 
         this.enderecosService.save(data)
             .subscribe(endereco => {
-                console.log('ENDERECO SALVO COM SUCESSO!!');
                 if (!this.uuid) {
-                    console.log('novo endereço, precisa do PATCH!');
                     this.clientesService.patch(this.parentUuid, {
                         endereco: endereco.uuid
                     }).subscribe(cliente => {
-                        console.log('patch no cliente', cliente);
-                        this.dialogRef.close();
+                        this.dialogRef.close(endereco);
                     });
                 } else {
-                    console.log('Cliente com endereço já cadastrado... não precisa do pacth!');
-                    this.dialogRef.close();
+                    this.dialogRef.close(endereco);
                 }
             });
     }

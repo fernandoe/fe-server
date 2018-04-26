@@ -68,7 +68,7 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
                                 console.log('ERROR (EnderecosService.get):', error);
                             });
                         }
-                        this.uiPersistButton = ((cliente.endereco) ? ('Editar Endereço') : ('Adicionar Endereço'));
+                        this.reloadUI();
                     },
                     response => {
                         console.log('ERROR:', response);
@@ -78,6 +78,10 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
 
+    }
+
+    reloadUI() {
+        this.uiPersistButton = ((this.cliente.endereco) ? ('Editar Endereço') : ('Adicionar Endereço'));
     }
 
     salvar() {
@@ -96,5 +100,15 @@ export class ClientePersistComponent implements OnInit, OnDestroy {
                 clienteUuid: this.uuid
             }
         });
+
+        this.enderecoDialogRef.afterClosed().subscribe(
+            data => {
+                if (data) {
+                    this.endereco = data;
+                    this.cliente.endereco = this.endereco.uuid;
+                }
+                this.reloadUI();
+            }
+        );
     }
 }
