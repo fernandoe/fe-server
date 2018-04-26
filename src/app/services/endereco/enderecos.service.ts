@@ -19,4 +19,15 @@ export class EnderecosService {
     create(endereco: Endereco): Observable<Endereco> {
         return this.httpClient.post<Endereco>(this.baseUrl + '/api/v1/enderecos/', endereco);
     }
+
+    save(endereco: Endereco): Observable<Endereco> {
+        console.log('EnderecosService.save:', endereco);
+        if (endereco.uuid) {
+            console.log('Salvando um endereço existente...');
+            return this.httpClient.put<Endereco>(`${this.baseUrl}/api/v1/enderecos/${endereco.uuid}/`, endereco);
+        } else {
+            console.log('Criando um novo endereço...');
+            return this.httpClient.post<Endereco>(this.baseUrl + '/api/v1/enderecos/', endereco);
+        }
+    }
 }
