@@ -20,16 +20,6 @@ export class TokenInterceptor implements HttpInterceptor {
         });
 
         return next.handle(request).do((event: HttpEvent<any>) => {
-            // if (this.contaService.isLoggedIn()) {
-            //     this.contaService.refreshToken();
-            //
-            //     return true;
-            // } else {
-            //     this.contaService.logout();
-            //     this.router.navigate(['login']);
-            //
-            //     return false;
-            // }
         }, (err: any) => {
             if (err instanceof HttpErrorResponse) {
                 if (err.status === 403) {
@@ -39,3 +29,41 @@ export class TokenInterceptor implements HttpInterceptor {
         });
     }
 }
+
+
+
+// @Injectable()
+// export class TokenInterceptor implements HttpInterceptor {
+//
+//     constructor(public contaService: ContaService,
+//                 private router: Router) {
+//     }
+//
+//     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//         console.log('======================================================================');
+//         request = request.clone({
+//             setHeaders: {
+//                 Authorization: `Bearer ${this.contaService.getToken()}`
+//             }
+//         });
+//
+//         return next.handle(request).do((event: HttpEvent<any>) => {
+//             // if (this.contaService.isLoggedIn()) {
+//             //     this.contaService.refreshToken();
+//             //
+//             //     return true;
+//             // } else {
+//             //     this.contaService.logout();
+//             //     this.router.navigate(['login']);
+//             //
+//             //     return false;
+//             // }
+//         }, (err: any) => {
+//             if (err instanceof HttpErrorResponse) {
+//                 if (err.status === 403) {
+//                     this.router.navigate(['login']);
+//                 }
+//             }
+//         });
+//     }
+// }

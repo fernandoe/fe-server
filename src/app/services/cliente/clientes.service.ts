@@ -28,4 +28,8 @@ export class ClientesService {
     save(cliente: Cliente): Observable<Cliente> {
         return this.httpClient.put<Cliente>(this.baseUrl + '/api/v1/clientes/' + cliente.uuid + '/', cliente);
     }
+
+    patch(uuid: string, params: any) {
+        return this.httpClient.patch(this.baseUrl + '/api/v1/clientes/' + uuid + '/', params);
+    }
 }
