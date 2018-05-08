@@ -18,6 +18,7 @@ import {
     MatTableModule,
     MatToolbarModule
 } from '@angular/material';
+import {CoachingModule} from './coaching/coaching.module';
 
 @NgModule({
     declarations: [
@@ -38,8 +39,9 @@ import {
         MatSidenavModule,
         MatTableModule,
 
-
         FuseSharedModule,
+
+        CoachingModule,
     ],
     exports: [
         FuseContentComponent
