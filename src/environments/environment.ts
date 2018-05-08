@@ -10,4 +10,7 @@ export const environment = {
     pessoaServerUrl: 'http://localhost:9001',
     enderecoServerUrl: 'http://localhost:9002',
     pagamentoServerUrl: 'http://localhost:9003',
+    smsServerUrl: 'http://localhost:9004',
+    coachingServerUrl: 'http://localhost:9005',
+    taskServerUrl: 'http://localhost:9006',
 };

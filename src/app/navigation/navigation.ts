@@ -9,5 +9,12 @@ export const navigation = [{
         'type': 'item',
         'icon': 'face',
         'url': '/clientes'
+    }, {
+        'id': 'sessoes',
+        'title': 'Sessões',
+        'type': 'item',
+        'icon': 'access_alarm',
+        'url': '/sessoes'
+    }, {
     }]
 }];
