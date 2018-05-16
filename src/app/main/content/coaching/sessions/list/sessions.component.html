@@ -1,1 +1,47 @@
-SESSION PAGE
+<div class="page-layout carded fullwidth" fusePerfectScrollbar>
+
+    <!-- TOP BACKGROUND -->
+    <div class="top-bg mat-accent-bg"></div>
+    <!-- / TOP BACKGROUND -->
+
+    <!-- CENTER -->
+    <div class="center">
+        <!-- HEADER -->
+        <div class="header white-fg"
+             fxLayout="column"
+             fxLayoutAlign="center center"
+             fxLayout.gt-xs="row"
+             fxLayoutAlign.gt-xs="space-between center">
+
+            <div class="logo my-12 m-sm-0" fxLayout="row" fxLayoutAlign="start center">
+                <mat-icon class="logo-icon mr-16" *fuseIfOnDom
+                          [@animate]="{value:'*',params:{delay:'50ms',scale:'0.2'}}">account_box
+                </mat-icon>
+                <span class="logo-text h1" *fuseIfOnDom [@animate]="{value:'*',params:{delay:'100ms',x:'-25px'}}">Sessões</span>
+            </div>
+
+            <!-- PESQUISA -->
+            <div class="search-input-wrapper mx-12 m-md-0" fxFlex="1 0 auto" fxLayout="row"
+                 fxLayoutAlign="start center">
+                <label for="search" class="mr-8">
+                    <mat-icon class="secondary-text">search</mat-icon>
+                </label>
+                <mat-form-field floatPlaceholder="never" fxFlex="1 0 auto">
+                    <input id="search" matInput #filter placeholder="Pesquisar">
+                </mat-form-field>
+            </div>
+            <!-- / PESQUISA -->
+
+            <button mat-raised-button
+                    (click)="clienteNovo()"
+                    [disabled]="isWorking"
+                    class="add-product-button mat-white-bg my-12 mt-sm-0">
+                <span>Novo Cliente</span>
+            </button>
+
+        </div>
+        <!-- / HEADER -->
+
+    </div>
+    <!-- / CENTER -->
+</div>
