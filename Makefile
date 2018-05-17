@@ -1,4 +1,4 @@
-docker-build:
+build:
 	docker build -t fernandoe/fe-server:local .
 
 docker-run:
